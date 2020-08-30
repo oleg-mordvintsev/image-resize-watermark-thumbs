@@ -1,0 +1,14 @@
+{
+  "name": "OlegMordvintsev/image-resize-watermark-thumbs",
+  "description": "Simple PHP GD2 - resizing, adding a thumbnail, and adding a watermark",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "OlegMordvintsev\\ImagePrepare\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.0",
+    "ext-openssl": "*"
+  }
+}
