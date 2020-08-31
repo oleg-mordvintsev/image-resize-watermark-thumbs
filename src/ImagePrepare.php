@@ -64,13 +64,12 @@ class Image
      * Конструктор класса и автоматическое заполнение переменных значениями по умолчанию.
      * @param int $width
      * @param int $height
-     * @param bool $thumbs
-     * @param bool $thumbsWidth
-     * @param bool $thumbsHeight
-     * @param bool $sourceWatermark
-     * @param bool $positionWatermark
-     * @param int $maxMemory
-     * @param int $maxExecutionTime
+     * @param int $thumbsWidth
+     * @param int $thumbsHeight
+     * @param string|bool $sourceWatermark
+     * @param int $positionWatermark
+     * @param int|bool $maxMemory
+     * @param int|bool $maxExecutionTime
      * @param int $jpegQuality
      */
     public function __construct(
