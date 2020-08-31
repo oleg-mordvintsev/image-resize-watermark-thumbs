@@ -1,5 +1,5 @@
 {
-  "name": "OlegMordvintsev/image-resize-watermark-thumbs",
+  "name": "OlegMordvintsev/ImagePrepare",
   "description": "Simple PHP GD2 - resizing, adding a thumbnail, and adding a watermark",
   "license": "MIT",
   "autoload": {

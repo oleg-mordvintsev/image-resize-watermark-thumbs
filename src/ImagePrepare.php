@@ -1,6 +1,6 @@
 <?php
 
-namespace OM\ImagePrepare;
+namespace OlegMordvintsev\ImagePrepare;
 
 class Image
 {
@@ -43,13 +43,13 @@ class Image
 
     /**
      * Максимальный лимит выделяемой памяти (ОЗУ)
-     * @var int
+     * @var int|bool - false означает, что изменять не требуется
      */
     private $maxMemory;
 
     /**
      * Максимально допустимое время обработки одного изображения
-     * @var int
+     * @var int|bool - false означает, что изменять не требуется
      */
     private $maxExecutionTime;
 
@@ -80,8 +80,8 @@ class Image
         $thumbsHeight = 320,
         $sourceWatermark = false,
         $positionWatermark = 0,
-        $maxMemory = 512,
-        $maxExecutionTime = 30,
+        $maxMemory = false,
+        $maxExecutionTime = false,
         $jpegQuality = 80
     )
     {
@@ -341,14 +341,18 @@ class Image
     private function memory()
     {
 
-        // Получаем текущий размер ОЗУ
-        $memory = (int)str_replace('M', '', ini_get('memory_limit'));
+        if ($this->maxMemory !== false && gettype($this->maxMemory) === 'integer') {
 
-        // Если размер ОЗУ меньше необходимого для работы, то...
-        if ($memory < $this->maxMemory) {
+            // Получаем текущий размер ОЗУ
+            $memory = (int)str_replace('M', '', ini_get('memory_limit'));
 
-            // Устанавливаем новое большее значение
-            ini_set('memory_limit', $this->maxMemory . 'M');
+            // Если размер ОЗУ меньше необходимого для работы, то...
+            if ($memory < $this->maxMemory) {
+
+                // Устанавливаем новое большее значение
+                ini_set('memory_limit', $this->maxMemory . 'M');
+
+            }
 
         }
 
@@ -360,8 +364,12 @@ class Image
     private function time()
     {
 
-        // Устанавливаем нужное значение    
-        set_time_limit($this->maxExecutionTime);
+        if ($this->maxExecutionTime !== false && gettype($this->maxExecutionTime) === 'integer') {
+
+            // Устанавливаем нужное значение
+            set_time_limit($this->maxExecutionTime);
+
+        }
 
     }
 
